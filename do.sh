@@ -95,9 +95,9 @@ function usage() {
 }
 
 
-if [ "$1" == "run" ]; then do_run
-elif [ "$1" == "build" ]; then ret=do_build; exit $ret;
-elif [ "$1" == "update" ]; then ret=do_update; exit $ret;
+if [ "$1" == "run" ]; then do_run; exit $?;
+elif [ "$1" == "build" ]; then do_build; exit $?;
+elif [ "$1" == "update" ]; then do_update; exit $?;
 else usage
 fi
 
