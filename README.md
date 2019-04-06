@@ -1,9 +1,9 @@
-# A Docker image for Spotifyd daemon on Raspberry Pi
+## A Docker image for Spotifyd daemon on Raspberry Pi
 
 The built image relies on pre-compiled binaries pulled from https://github.com/Spotifyd/spotifyd.
 
 
-## Build it
+### Build it
 
 ```
 git clone https://github.com/dbyio/spotifyMyPi
@@ -13,21 +13,21 @@ sudo ./do.sh build
 ```
 
 
-## Configure it
+### Configure it
 
-Copy then edit `conf/spotifyd` in `/opt/spotifyd/etc`
+Copy then edit `conf/spotifyd.conf` in `/opt/spotifyd/etc`
 
 You'll need to set your Spotify Premium accounts details in there, as well as your sound card Alsa identifier.
 
 
-## Run it
+### Run it
 
 Simple way:
 ```
 sudo ./do.sh run
 ```
 
-### OR
+#### OR
 
 Run with **systemd** (recommended):
 ```
@@ -38,7 +38,7 @@ sudo systemctl start spotifyd
 ```
 
 
-## Update the image
+### Update the image
 
 The following command will build a new image using the latest Spotifyd binaries and upgrade the system base image.
 
