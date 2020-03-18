@@ -5,7 +5,6 @@ Description=Spotify playing daemon
 BindsTo=docker.service
 After=docker.service
 
-
 [Service]
 Environment=NAME=spotifyd
 Restart=on-failure
@@ -13,12 +12,11 @@ RestartSec=10
 ExecStartPre=-/bin/bash -c "/usr/bin/docker container inspect ${NAME} >/dev/null 2>&1 && /usr/bin/docker stop -t 2 ${NAME}; exit 0"
 ExecStartPre=-/bin/bash -c "/usr/bin/docker container inspect ${NAME} >/dev/null 2>&1 && /usr/bin/docker rm ${NAME}; exit 0"
 ExecStart=/usr/bin/docker run --name ${NAME} \
-	-v "/opt/spotifyd/etc:/etc/spotifyd:ro" \
+	-v "/opt/spotifyd/etc/spotifyd.conf:/etc/spotifyd.conf:ro" \
 	--device /dev/snd --rm \
 	spotifyd
 ExecStop=/usr/bin/docker kill --signal SIGINT spotifyd
 ExecReload=/usr/bin/docker restart $(NAME}
-
 
 [Install]
 WantedBy=multi-user.target

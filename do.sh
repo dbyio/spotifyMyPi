@@ -50,7 +50,7 @@ function do_run() {
 	fi
 
 	echo "Starting new container."
-	docker run --name spotifyd -d -v "/opt/spotifyd/etc:/etc/spotifyd:ro" --rm --device /dev/snd spotifyd
+	docker run --name spotifyd -d -v "/opt/spotifyd/etc/spotifyd.conf:/etc/spotifyd.conf:ro" --rm --device /dev/snd spotifyd
 	return $?
 }
 

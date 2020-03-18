@@ -12,4 +12,4 @@ RUN curl -L `curl --silent https://api.github.com/repos/spotifyd/spotifyd/releas
 	usermod -a -G audio daemon
 
 USER daemon
-ENTRYPOINT ["/usr/bin/spotifyd", "--no-daemon", "-c", "/etc/spotifyd/spotifyd.conf"]
+ENTRYPOINT ["/usr/bin/spotifyd", "--no-daemon"]
