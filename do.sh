@@ -81,7 +81,7 @@ function do_build() {
 		echo "Image exists already. Run $0 update if you want to update the existing build."
 		return 0
 	fi
-	docker build -t spotifyd .
+	docker build -t spotifyd:latest .
 	return $?
 }
 
