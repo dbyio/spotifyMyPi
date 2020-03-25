@@ -1,6 +1,6 @@
 # A Docker image for Spotifyd on Raspberry Pi
 
-spotifyMyPi builds a Docker image of [Spotifyd](https://github.com/Spotifyd/spotifyd) from source, pulled from the master branch.
+_spotifyMyPi_ builds a Docker image of [Spotifyd](https://github.com/Spotifyd/spotifyd) from source, pulled from the master branch.
 The base image is now based on [Alpine Linux](https://alpinelinux.org).
 
 
@@ -79,4 +79,4 @@ WantedBy=multi-user.target [your DAC's device unit name here]
 
 Please note that modifying the *Install* section of an existing unit file will require re-enabling the unit, not just daemon-reloading systemd.
 
-The Spotifyd container should now be started when your DAC is powered on, stopped when powered off.
+The _spotifyd_ container should now be started when your DAC is powered on, stopped when powered off.
