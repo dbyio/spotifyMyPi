@@ -1,6 +1,7 @@
 # A Docker image for Spotifyd on Raspberry Pi
 
-Built image relies on pre-compiled binaries pulled from https://github.com/Spotifyd/spotifyd.
+_spotifyMyPi_ builds a Docker image of [Spotifyd](https://github.com/Spotifyd/spotifyd) from source, pulled from the master branch.
+The base image is now based on [Alpine Linux](https://alpinelinux.org).
 
 
 ### Build it
@@ -12,10 +13,21 @@ chmod +x do.sh
 sudo ./do.sh build
 ```
 
+If you're satisfied with the result, you'll want to remove the intermediary _build_ image, which can grow rather extensively.
+```
+sudo docker image prune 
+```
 
 ### Configure it
 
 Copy then edit `conf/spotifyd.conf` in `/opt/spotifyd/etc`. You'll need to set your Spotify Premium accounts details, as well as your sound card Alsa identifier.
+
+**Alignment of the _audio_ GUID
+If you're running Docker on a debian-based system (typically Raspbian), you'll need to align the GUID of the _audio_ group on your host system with Alpine's. On your host system, run `sudo vigr` and change the GUID for _audio_ to 18. Failing to do so will result in the service not being able to access the soundcard device.
+```
+$ grep audio /etc/group
+audio:x:18:
+```
 
 
 ### Run it
@@ -36,7 +48,7 @@ sudo systemctl start spotifyd
 
 ### Update the image
 
-The following command will rebuild a new image using the latest Spotifyd binaries and an updated base image.
+The following command will rebuild a new image using updated source code and base image.
 
 ```
 sudo ./do.sh update
@@ -67,4 +79,4 @@ WantedBy=multi-user.target [your DAC's device unit name here]
 
 Please note that modifying the *Install* section of an existing unit file will require re-enabling the unit, not just daemon-reloading systemd.
 
-The Spotifyd container should now be started when your DAC is powered on, stopped when powered off.
+The _spotifyd_ container should now be started when your DAC is powered on, stopped when powered off.
