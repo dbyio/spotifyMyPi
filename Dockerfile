@@ -4,7 +4,7 @@ FROM arm32v7/alpine:latest AS build
 WORKDIR /tmp
 RUN apk update && apk add alsa-lib libvorbis libgcc openssl-dev alsa-lib-dev rust cargo && \
 	wget https://github.com/Spotifyd/spotifyd/archive/master.zip && \
-	unzip master.zip && cd spotifyd-master && cargo build --release
+	unzip master.zip && cd spotifyd-master && cargo build --release -j 2
 
 FROM arm32v7/alpine:latest
 LABEL maintainer="np@bitbox.io"
